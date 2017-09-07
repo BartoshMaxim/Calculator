@@ -1,0 +1,56 @@
+﻿@model string
+@{
+    ViewBag.Title = "Calculator";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var options = new AjaxOptions()
+    {
+        UpdateTargetId = "result",
+        Url = Url.Action("Calculate"),
+
+    };
+}
+
+@Model
+<div class="calc_container">
+    @using (Ajax.BeginForm("Calculate", options))
+    {
+        <div class="calc_result-window">
+            <div id="result">
+                @Html.Partial("Calculate", Model)
+            </div>
+        </div>
+        <input type="hidden" id="command" value="one" />
+        <div class="calc_buttons">
+            <div>
+                <button name="command" id="clear" value="clear">C</button>
+                <button name="command" id="plus_minus" value="plus_minus">+/-</button>
+                <button name="command" id="percent" value="percent">%</button>
+                <button name="command" id="division" value="division">/</button>
+            </div>
+            <div>
+                <button name="number" id="seven" value="7">7</button>
+                <button name="number" id="eight" value="8">8</button>
+                <button name="number" id="nine" value="9">9</button>
+                <button name="command" id="multiply" value="multiply">x</button>
+            </div>
+            <div>
+                <button name="number" id="four" value="4">4</button>
+                <button name="number" id="five" value="5">5</button>
+                <button name="number" id="six" value="6">6</button>
+                <button name="command" id="minus" value="minus">-</button>
+            </div>
+            <div>
+                <button name="number" id="one" value="1">1</button>
+                <button name="number" id="two" value="2">2</button>
+                <button name="number" id="three" value="3">3</button>
+                <button name="command" id="plus" value="plus">+</button>
+            </div>
+            <div>
+                <button name="number" class="button0" id="zero" value="0">0</button>
+                <button name="command" id="dot" value="dot">,</button>
+                <button name="command" id="equals" value="equals">=</button>
+            </div>
+        </div>
+    }
+</div>
